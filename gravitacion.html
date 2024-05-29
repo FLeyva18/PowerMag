@@ -1,0 +1,44 @@
+<head>
+	<link rel="stylesheet" href="style.css">
+</head>
+<div class="box">
+	<input type="number" id="mass1" placeholder="Masa 1">
+	<input type="number" id="mass2" placeholder="Masa 2">
+	<input type="number" id="distance" placeholder="Distancia">
+	<input type="number" id="force" placeholder="Fuerza">
+	<input type="button" value="Calcular" id="calculate">
+</div>
+
+<script>
+	const force = document.getElementById('force');
+	const n1 = document.getElementById('mass1');
+	const n2 = document.getElementById('mass2');
+	const d = document.getElementById('distance');
+	const btnCalc = document.getElementById('calculate');
+
+	btnCalc.addEventListener('click', function(){
+		const inputs = document.querySelectorAll('input[type="number"]');
+
+		let f = force.value;
+		let m1 = n1.value;
+		let m2 = n2.value;
+		let r = d.value;
+		
+		let valid = 0;
+		inputs.forEach(elemento => {
+			if(elemento.value == ""){
+				valid ++;
+			}
+		})
+
+		if(valid == 1){
+			f == "" && Math.ceil(force.value = (m1*m2)/r**2);
+			m1 == "" && (n1.value = ((f * r**2) / m2));
+			m2 == "" && (n2.value = ((f * r**2) / m1));
+			r == "" && (d.value = Math.sqrt((m1*m2)/f));
+		}else{
+			alert('Falta capturar algunos valores');
+		}
+
+	})
+</script>

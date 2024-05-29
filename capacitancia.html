@@ -1,0 +1,42 @@
+<head>
+	<link rel="stylesheet" href="style.css">
+</head>
+<div class="box">
+	<input type="number" id="carga" placeholder="Carga almacenada">
+	<input type="number" id="difPotencial" placeholder="Diferencia de potencial">
+	<input type="number" id="capacitancia" placeholder="Capacitancia">
+	<input type="button" value="Calcular" id="calculate">
+</div>
+
+<script>
+	const carga = document.getElementById('carga');
+	const potencial = document.getElementById('difPotencial');
+	const capacitancia = document.getElementById('capacitancia');
+	const btnCalc = document.getElementById('calculate');
+
+	btnCalc.addEventListener('click', function(){
+		const inputs = document.querySelectorAll('input[type="number"]');
+
+		let C = capacitancia.value;
+		let Q = carga.value;
+		let V = potencial.value;
+		
+		let valid = 0;
+		inputs.forEach(elemento => {
+			if(elemento.value == ""){
+				valid ++;
+			}
+		})
+
+		if(valid == 1){
+			C == "" && (capacitancia.value = Q/V);
+			Q == "" && (carga.value = C*V);
+			V == "" && (potencial.value = Q/C);
+		}else if(valid == 0){
+			alert('Deja un campo vacio para aplicar la formula');
+		}else{
+			alert('Falta capturar algunos valores');
+		}
+
+	})
+</script>

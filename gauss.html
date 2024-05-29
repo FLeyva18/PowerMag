@@ -1,0 +1,37 @@
+<head>
+	<link rel="stylesheet" href="style.css">
+</head>
+<div class="box">
+	<input type="number" id="c1" placeholder="Carga encerrada">
+	<input type="number" id="flow" placeholder="Flujo electrico">
+	<input type="button" value="Calcular" id="calculate">
+</div>
+
+<script>
+	const c1 = document.getElementById('c1');
+	const IE = document.getElementById('flow');
+	const btnCalc = document.getElementById('calculate');
+
+	btnCalc.addEventListener('click', function(){
+		const inputs = document.querySelectorAll('input[type="number"]');
+
+		let q1 = c1.value;
+		let E = IE.value;
+		let E0 = 8.854*10**(-12);
+		
+		let valid = 0;
+		inputs.forEach(elemento => {
+			if(elemento.value == ""){
+				valid ++;
+			}
+		})
+
+		if(valid == 1){
+			q1 == "" && (c1.value = (E*E0));
+			E == "" && (IE.value = q1 / E0);
+		}else{
+			alert('Falta capturar algunos valores');
+		}
+
+	})
+</script>

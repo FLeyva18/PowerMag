@@ -1,0 +1,42 @@
+<head>
+	<link rel="stylesheet" href="style.css">
+</head>
+<div class="box">
+	<input type="number" id="corriente" placeholder="Corriente">
+	<input type="number" id="voltaje" placeholder="Voltaje">
+	<input type="number" id="resistencia" placeholder="Resistencia">
+	<input type="button" value="Calcular" id="calculate">
+</div>
+
+<script>
+	const corriente = document.getElementById('corriente');
+	const voltaje = document.getElementById('voltaje');
+	const resistencia = document.getElementById('resistencia');
+	const btnCalc = document.getElementById('calculate');
+
+	btnCalc.addEventListener('click', function(){
+		const inputs = document.querySelectorAll('input[type="number"]');
+
+		let I = corriente.value;
+		let R = resistencia.value;
+		let V = voltaje.value;
+		
+		let valid = 0;
+		inputs.forEach(elemento => {
+			if(elemento.value == ""){
+				valid ++;
+			}
+		})
+
+		if(valid == 1){
+			I == "" && (corriente.value = V/R);
+			R == "" && (resistencia.value = V/I);
+			V == "" && (voltaje.value = R*I);
+		}else if(valid == 0){
+			alert('Deja un campo vacio para aplicar la formula');
+		}else{
+			alert('Falta capturar algunos valores');
+		}
+
+	})
+</script>

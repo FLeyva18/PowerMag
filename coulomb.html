@@ -1,0 +1,82 @@
+<head>
+	<link rel="stylesheet" href="style.css">
+</head>
+<div class="box">
+	
+	<span>Carga</span>
+	<input type="number" id="c1" placeholder="Carga 1">
+	<span>C</span>
+	
+	<span>Carga</span>
+	<input type="number" id="c2" placeholder="Carga 2">
+	<span>C</span>
+	
+	<span>Distancia</span>
+	<input type="number" id="distance" placeholder="Distancia">
+	<select name="Distancia" id="selectDistance">
+		<option value="1" selected>m</option>
+		<option value="2">cm</option>
+		<option value="3">mm</option>
+	</select>
+
+	<span>Fuerza</span>
+	<input type="number" id="force" placeholder="Fuerza">
+	<span>N</span>
+
+	<input type="button" value="Calcular" id="calculate">
+
+</div>
+
+<script>
+	const c1 = document.getElementById('c1');
+	const c2 = document.getElementById('c2');
+	const d = document.getElementById('distance');
+	const force = document.getElementById('force');
+	const btnCalc = document.getElementById('calculate');
+
+	btnCalc.addEventListener('click', function(){
+		const inputs = document.querySelectorAll('input[type="number"]');
+
+		let f = force.value;
+		let q1 = c1.value;
+		let q2 = c2.value;
+		let r = d.value;
+		let k = 8.987*10**9;
+		let convert = document.getElementById('selectDistance').value;
+		console.log(convert);
+
+		switch (convert) {
+			case '1':
+				break
+			case '2':
+				r /= 100;
+				break;
+		
+			case '3':
+				r /= 1000;
+				break;
+		
+			default:
+				break;
+		}
+
+		console.log(r)
+		
+		let valid = 0;
+		inputs.forEach(elemento => {
+			if(elemento.value == ""){
+				valid ++;
+			}
+		})
+
+		if(valid == 1){
+			f == "" && (force.value = (k*(q1*q2)/r**2).toExponential(4));
+			q1 == "" && (c1.value = ((f*r**2) / k*q2));
+			q2 == "" && (c2.value = ((f*r**2) / k*q1));
+			r == "" && (d.value = Math.sqrt((k*q1*q2)/f));
+		}else{
+			alert('Falta capturar algunos valores');
+		}
+
+	})
+</script>

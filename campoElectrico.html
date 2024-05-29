@@ -1,0 +1,41 @@
+<head>
+	<link rel="stylesheet" href="style.css">
+</head>
+<div class="box">
+	<input type="number" id="c1" placeholder="Carga 1">
+	<input type="number" id="distance" placeholder="Distancia">
+	<input type="number" id="field" placeholder="Campo electrico">
+	<input type="button" value="Calcular" id="calculate">
+</div>
+
+<script>
+	const c1 = document.getElementById('c1');
+	const d = document.getElementById('distance');
+	const E = document.getElementById('field');
+	const btnCalc = document.getElementById('calculate');
+
+	btnCalc.addEventListener('click', function(){
+		const inputs = document.querySelectorAll('input[type="number"]');
+
+		let E0 = E.value;
+		let q1 = c1.value;
+		let r = d.value;
+		let k = 8.987*10**9;
+		
+		let valid = 0;
+		inputs.forEach(elemento => {
+			if(elemento.value == ""){
+				valid ++;
+			}
+		})
+
+		if(valid == 1){
+			E0 == "" && (E.value = k*q1/r**2);
+			q1 == "" && (c1.value = ((E0*r**2) / k));
+			r == "" && (d.value = Math.sqrt((k*q1)/E0));
+		}else{
+			alert('Falta capturar algunos valores');
+		}
+
+	})
+</script>
